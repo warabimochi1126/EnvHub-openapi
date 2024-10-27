@@ -1,0 +1,52 @@
+openapi: 3.0.0
+
+info:
+  version: 1.0.0
+  title: EnvHub API
+  description: EnvHubのAPIです。
+
+paths:
+  /auth/status-check:
+    post:
+      description: 認証されているかどうかを判定するエンドポイント
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                redirectPath:
+                  type: string
+
+      responses:
+        '200':
+          description: 認証されている時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  callbackUrl:
+                    description: 認証後のリダイレクト先
+                    type: string
+
+        "400":
+          description: リクエストボディが存在しない時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+        "401":
+          description: 認証されていない時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
