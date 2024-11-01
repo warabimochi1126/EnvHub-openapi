@@ -1,0 +1,28 @@
+name: OpenAPIをredocとしてgithub pagesにデプロイする
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "openapi/*" # OpenAPIのyamlだけをCI対象にする
+  workflow_dispatch: # 手動実行用
+
+jobs:
+  deploy-redoc:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリを取得する
+      - uses: actions/checkout@v4
+
+      - name: ls見ておく
+        run: ls
+
+      - name: redoc生成
+        run: npx @redocly/cli build-docs ./openapi.yaml -o ./docs/envhub-api-docs.html
+
+      - name: GitHub Pages にデプロイする
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
