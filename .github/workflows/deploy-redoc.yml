@@ -21,9 +21,7 @@ jobs:
       - name: artifactsとして生成したredocを保存する
         uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-
+          path: ./docs
   deploy-redoc:
     needs: build-redoc
     runs-on: ubuntu-latest
