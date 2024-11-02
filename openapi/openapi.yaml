@@ -5,6 +5,28 @@ info:
   title: EnvHub API
   description: EnvHubのフロントエンド向けAPIです。
 
+components:
+  schemas:
+    UnAuthorizedErrorObject:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ServerSideErrorObject:
+      type: object
+      properties:
+        message:
+         type: string
+
+  responses:
+    UnauthorizedError:
+      description: 認証情報不足時のレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/UnAuthorizedErrorObject"
+
 paths:
   /auth/status-check: 
     post:
@@ -128,3 +150,77 @@ paths:
                   properties:
                     commit_uuid:
                       type: string
+                    commit_message:
+                      type: string
+                    commiter_name:
+                      type: string
+                      nullable: true
+                    created_at:
+                      type: string
+
+        "403":
+          description: 認証情報不足時レスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+        "500":
+          description: 取得失敗時レスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /repositories/{repositoryId}/commits/{commitUuid}/files:
+    get:
+      description: コミットIDに紐づくファイル一覧取得API
+      parameters:
+        - name: repositoryId
+          in: path
+          required: true
+          schema:
+            type: number
+            description: リポジトリID
+        - name: commitUuid
+          in: path
+          required: true
+          schema:
+            type: string
+            description: コミットUUID
+
+      responses:
+        "200":
+          description: 取得成功時レスポンス
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    created_at:
+                      type: string
+                    metadata:
+                      type: object
+                      properties:
+                        size:
+                          type: number
+
+        "403":
+         $ref: "#/components/responses/UnauthorizedError"
+          
+        "500":
+          description: 取得失敗時レスポンス
+          content:
+            application/json:
+              schema:
+               $ref: "#/components/schemas/ServerSideErrorObject"
