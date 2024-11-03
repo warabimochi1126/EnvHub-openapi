@@ -1,7 +1,7 @@
 # インストール
 
 ```
-npm install -g redocly
+npm i -g @redocly/cli@latest
 ```
 
 # redoc ローカル起動
