@@ -224,3 +224,39 @@ paths:
             application/json:
               schema:
                $ref: "#/components/schemas/ServerSideErrorObject"
+
+  /repositories/{repositoryId}/commits/{commitUuid}/files/download:
+    get:
+      description: コミットに紐づくファイル群の一括ダウンロードリンク取得API
+      parameters:
+        - name: repositoryId
+          in: path
+          required: true
+          schema:
+            type: number
+            description: リポジトリID
+        - name: commitUuid
+          in: path
+          required: true
+          schema:
+            type: string
+            description: コミットUUID
+
+      responses:
+        "200":
+          description: 取得成功時レスポンス
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    signedUrl:
+                      type: string
+                    error:
+                      type: string
+                      nullable: true
+                    path:
+                      type: string
+                      nullable: true
