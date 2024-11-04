@@ -1,0 +1,23 @@
+name: OpenAPIからTypeScriptの型定義を作成してnpmにpublishする
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+      - "openapi/*" # OpenAPIのyamlだけをCI対象にする
+  workflow_dispatch: # 手動実行用
+
+jobs:
+  build-typescript:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリを取得する
+      - uses: actions/checkout@v4
+
+      - name: TypeScriptの型定義を生成する
+        run: npx @hey-api/openapi-ts -i openapi/openapi.yaml -o src/client -c @hey-api/client-fetch
+
+      - name: 生成したTypeScriptの型をnpmに公開できるようにトランスパイルする
+        run: npx tsc
+
