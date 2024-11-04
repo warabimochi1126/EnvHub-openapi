@@ -1,2 +1,4 @@
 .42c/
 /node_modules
+/dist
+/.vscode

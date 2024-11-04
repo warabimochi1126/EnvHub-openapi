@@ -1,0 +1,7 @@
+/.42c
+/.github
+/.vscode
+/node_modules
+/openapi
+/src
+tsconfig.json
