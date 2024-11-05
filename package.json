@@ -1,6 +1,6 @@
 {
   "name": "@warabimochi/envhub-openapi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "EnvHubのOpenAPI定義です。",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
