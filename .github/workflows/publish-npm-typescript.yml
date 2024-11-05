@@ -11,6 +11,10 @@ on:
 jobs:
   build-typescript:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
       # リポジトリを取得する
       - uses: actions/checkout@v4
