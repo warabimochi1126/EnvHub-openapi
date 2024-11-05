@@ -1,7 +1,0 @@
-🚫 client needs to be set to generate services - which HTTP client do you want to use?
-Error: 🚫 client needs to be set to generate services - which HTTP client do you want to use?
-    at Object.fi [as _handlerLegacy] (C:\Users\2220415\AppData\Local\npm-cache\_npx\a3521d5d8f143c4a\node_modules\@hey-api\openapi-ts\dist\index.cjs:31:18311)
-    at zs (C:\Users\2220415\AppData\Local\npm-cache\_npx\a3521d5d8f143c4a\node_modules\@hey-api\openapi-ts\dist\index.cjs:27:2635)
-    at async C:\Users\2220415\AppData\Local\npm-cache\_npx\a3521d5d8f143c4a\node_modules\@hey-api\openapi-ts\dist\index.cjs:1327:8734
-    at async Vm (C:\Users\2220415\AppData\Local\npm-cache\_npx\a3521d5d8f143c4a\node_modules\@hey-api\openapi-ts\dist\index.cjs:1327:8986)
-    at async start (C:\Users\2220415\AppData\Local\npm-cache\_npx\a3521d5d8f143c4a\node_modules\@hey-api\openapi-ts\bin\index.cjs:86:5)
