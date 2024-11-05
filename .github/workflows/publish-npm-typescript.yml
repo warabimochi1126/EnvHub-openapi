@@ -15,6 +15,9 @@ jobs:
       # リポジトリを取得する
       - uses: actions/checkout@v4
 
+      - name: npm installする
+        run: npm install
+
       - name: TypeScriptの型定義を生成する
         run: npx @hey-api/openapi-ts -i openapi/openapi.yaml -o src/client -c @hey-api/client-fetch
 
